@@ -8,15 +8,15 @@ include_once'connection.php';
 <head>
 <style>
 .transfersButton{
-    width: 50%;
+    width: 90%;
     text-align: center;
-    background-color: lightgrey;
+    background-color: whitesmoke;
     margin: auto;
     padding: 1%; 1%;
 }
     select{
         border: none;
-        padding: 2%; 2%;
+        padding: 1%; 1%;
         width: 50%;
         background-color: blue;
         opacity: .7;
@@ -37,8 +37,9 @@ include_once'connection.php';
         text-align: center;
         margin: auto;
         background-color: white;
-        
+        color: blue;
         border-radius: 5px;
+        opacity: .7;
     }
     h3{
         
@@ -61,13 +62,12 @@ include_once'connection.php';
         border-radius: 5px;
         margin-top: 1%;
         margin-bottom: 1%;
-        padding: 10px; 10px;
+        padding: 15px; 10px;
     }
     input[type=submit]:hover{
         background-color: white;
         color: blue;
     }
-    /*style the arrow inside the select element:*/
 </style>
 </head>
     
@@ -92,10 +92,10 @@ $sql = "Select * FROM account WHERE SSN1 = '$userSSN'";
 $result = $conn->query($sql);
 echo "<h2>Transfers</h2>" . "<br>" . "<br>";
 echo "<div class='transfersButton'>";
-echo "<h3>From:</h3>";
+//echo "<h3>From:</h3>";
 echo "<select name='fromAccount' form='transferForm'><option value='0'>Choose an account to withdraw from</option>";
 while($row = $result->fetch_assoc()){
-    echo "<option value=" . $row['account'] . ">" ."$". $row['balance'] . " - " . $row['type'] . " Number - ". $row['account'] . "</option>";
+    echo "<option value=" . $row['account'] . ">" . "Withdraw from: " ."$". $row['balance'] . " - " . $row['type'] . " Number - ". $row['account'] . "</option>";
 }
 echo "</select>";
 
@@ -103,16 +103,16 @@ echo "<br>";
 
 $sql = "Select * FROM account WHERE SSN1 = '$userSSN'";
 $result = $conn->query($sql);
-echo "<h3>To:</h3>";
+//echo "<h3>To:</h3>";
 echo "<select name='toAccount'form='transferForm'><option value='0'>Choose an account to deposit into</option>";
 while($row = $result->fetch_assoc()){
-    echo "<option value=" . $row['account'] . ">" ."$". $row['balance'] . " - " . $row['type'] . " Number - ". $row['account'] . "</option>";
+    echo "<option value=" . $row['account'] . ">" . "Deposit into: " ."$". $row['balance'] . " - " . $row['type'] . " Number - ". $row['account'] . "</option>";
 }
 echo "</select>";
      
-echo "<h3>How much would you like to withdraw?</h3>";
+//echo "<h3>Amount:</h3>";
 echo "<form method='POST' action='postTransfer.php' id='transferForm'>";
-echo "<input type='text' id='amount' name='amount'></input><br>";
+echo "<input type='text' placeholder='Amount' id='amount' name='amount'></input><br><br>";
 echo "<input type='submit' value='submit'>";
 echo "</from>";
 echo "</div>";

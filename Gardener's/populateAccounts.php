@@ -6,19 +6,14 @@ include_once'connection.php';
 <html>
 <head>
 <style>
-    table {
-    width: 50%;
-    border-collapse: collapse;
-    margin: auto;
-}
-
+<style>
 table, td, th {
     border: 1px solid #ddd;
     padding: 5px;
 }
 th {
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         background-color: blue;
         color: white;
         opacity: .7;
@@ -26,8 +21,23 @@ th {
 tr:hover {
     background-color: #ddd;
 }
-h3{text-align: center;}
-th {text-align: left;}
+    table{
+        width: 90%;
+         border-collapse: collapse;
+        margin: auto;
+    }
+h2{
+    text-align: center;
+    color: blue;
+    opacity: .7;
+    }
+th {
+    text-align: left;
+    }
+    th, td{
+        border-bottom: 1px solid lightgray;
+        padding: 15px;
+    }
     
     p {float: right;}
 </style>
@@ -35,8 +45,7 @@ th {text-align: left;}
     
  <body>   
 <?php
-echo "<p>" . "Hello, " . $_SESSION["sessionUser"] . "!" . "</p>" . "<br>";
-echo "<h3>" . "Accounts" . "</h3>";
+echo "<p>" . "Hello, " . $_SESSION["sessionUser"] . "!" . "</p>" . "<br><br><br><br>";
 
 $user = $_SESSION["sessionUser"];
 $userSSN = "";
@@ -55,18 +64,18 @@ else{
 
 $sql = "Select * FROM account WHERE SSN1 = '$userSSN'";
 $result = $conn->query($sql);
-
+echo "<h2>My Accounts</h2>";
 echo "<table>
 <tr>
-<th>Type</th>
-<th>Account Number</th>
 <th>Balance</th>
+<th>Account Number</th>
+<th>Type</th>
 </tr>";
 while($row = $result->fetch_assoc()){
     echo "<tr>";
-    echo "<td>" . $row['type'] . "</td>";
-    echo "<td>" . $row['account'] . "</td>";
     echo "<td>" . "$" . $row['balance'] . "</td>";
+    echo "<td>" . $row['account'] . "</td>";
+    echo "<td>" . $row['type'] . "</td>";
     echo "<tr>";
 }
 

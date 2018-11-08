@@ -8,5 +8,20 @@ $fromAccount = $_POST['fromAccount'];
 $toAccount = $_POST['toAccount'];
 $amount = $_POST['amount'];
 
-echo $fromAccount . " " . $toAccount . " " . $amount;
+//Withdraw from account
+
+$sql = "UPDATE account
+        SET balance = balance - $amount
+        WHERE account = $fromAccount";
+$result = $conn->query($sql);
+
+//Deposit into account
+ 
+$sql = "UPDATE account
+        SET balance = balance + $amount
+        WHERE account = $toAccount";
+$result = $conn->query($sql);
+
+header("Location:accounts.html");
+    
 ?>
