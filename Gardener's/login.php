@@ -1,5 +1,6 @@
 <?php
  include_once'connection.php';
+  session_start();
 ?>
 <!Doctype html>
 <html>
@@ -14,12 +15,12 @@ $password = $_POST['password'];
     $result = $conn->query($sql);
     
     if($result->num_rows == 1){
-        header("Location:home.html");
+        header("Location:accounts.html");
     }else{
         echo "Error: Incorrect username or password";
     }
     
-    
+    $_SESSION["sessionUser"] = $username;
     
    
 ?>

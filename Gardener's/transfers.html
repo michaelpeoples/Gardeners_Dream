@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title> Garderner's Dream </title>
     <link rel="stylesheet" href="gardenersDream.css">
@@ -21,6 +22,18 @@
     </div>
        
     </div>
+    <br><br><br>
+    <div id=transfers>
     
+    </div>
+    
+      <script>
+    $(function(){
+        $.get("transfers.php", function(data){
+            document.getElementById("transfers").innerHTML=data;
+        });
+        
+    });
+    </script>
 </body>
 </html>

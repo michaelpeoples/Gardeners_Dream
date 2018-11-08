@@ -1,5 +1,6 @@
 <?php
  include_once'connection.php';
+ session_start();
 ?>
 <!Doctype html>
 <html>
@@ -19,8 +20,9 @@ if($conn->query($sql) === TRUE){
 }else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
-    
-header("Location:home.html");
+ 
+$_SESSION["sessionUser"] = $username;
+header("Location:accounts.html");
 ?>
 </body>
 </html>
