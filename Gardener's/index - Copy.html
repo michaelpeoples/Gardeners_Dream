@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="jquery-3.3.1.min.js"></script>
+<title>Login</title>
+    <link rel="stylesheet" href="gardenersDream.css">
+</head>
+
+<body>
+    
+    <div class="logo">
+    <h2>Gardener's Dream Online Banking</h2>
+    </div>
+    <br><br>
+    <div class="userInput">
+      <form action="login.php" method="POST">
+      <label for="username"><b>Username</b></label>
+      <input type="text" placeholder="Username" id="username" name="username">
+      <label for="password"><b>Password</b></label>
+      <input type="text" placeholder="Password" name="password">
+      <br>
+      <button type="submit">Login</button>
+      </form>
+      <button type="Sign_up" onclick="location.href='sign_up.html';">Sign up</button>
+      </div>
+    
+    <script>
+    $("submit").click(function(){
+            $.post("login.php");
+    });
+
+    </script>
+</body>
+</html>

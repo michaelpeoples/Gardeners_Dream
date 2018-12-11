@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Garderner's Dream </title>
+    <link rel="stylesheet" href="gardenersDream.css">
+</head>
+
+<body>
+   <div class="navbar">
+    <a href="accounts.html">Accounts</a>
+    <a href="transfers.html">Transfers</a>
+    <a href="openAccounts.html">Open Accounts</a>
+    <a href="payments.html">Payments</a>
+    <a href="contacts.html">Contacts</a>
+    <a href="myProfile.html">Profile</a>
+    
+    
+    <div class="navbar-container">
+    <button>logout</button>
+    </div>
+       
+    </div>
+    <br><br><br>
+    <div id=transfers>
+    
+    </div>
+    
+      <script>
+    $(function(){
+        $.get("transfers.php", function(data){
+            document.getElementById("transfers").innerHTML=data;
+        });
+        
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<title> Garderner's Dream </title>
+<link rel="stylesheet" href="gardenersDream.css">
+<style>
+    .checkingText{
+        display: none;
+        margin: auto;
+    }
+    .checkingText button{
+        width: 50%;
+        margin: auto;
+    }
+     .savingsText{
+        display: none;
+        margin: auto;
+    }
+    .savingsText button{
+        width: 50%;
+        margin: auto;
+    }
+    .simpleDescription{
+        width: 50%;
+        border-color: blue;
+        margin: auto;
+    }
+    .userInput{
+        width: 50%;
+    }
+    h3{
+        text-align: center;
+    }
+    .ownership{
+        display: none;
+    }
+    
+</style>
+</head>
+
+<body>
+   <div class="navbar">
+    <a href="accounts.html">Accounts</a>
+    <a href="transfers.html">Transfers</a>
+    <a href="openAccounts.html">Open Accounts</a>
+    <a href="payments.html">Payments</a>
+    <a href="contacts.html">Contacts</a>
+    <a href="myProfile.html">Profile</a>
+    
+    
+    <div class="navbar-container">
+    <button>logout</button>
+    </div>
+    </div>
+           <br><br><br><br>
+    <div class="userInput">
+     <div class="tab1">
+         <h3>What type of account would you like to open?</h3>
+          <button id="checking" value="checking">Checking</button>
+          <button id="savings" value="savings">Savings</button>
+          <button id="certificate" value="certificate">Certificate of Deposit</button>
+    </div>
+              <div class="checkingText">
+              <h3>What type of checking account would you like to open?</h3>
+                  <button id="simpleChecking">Simple Checking</button>
+                  <div class="simpleDescription"><p>The simple checking is an account with no monthly service charge. A great place to start if you're unsure and an easy to maintain account that includes all the essentials.</p></div>
+                 <button id="interestChecking">Interest Checking</button>
+                 <div class="simpleDescription"><p>The interest checking is an interest bearing account that requires a $500 average daily balance. If the average daily balance is not met, there is a $2.00 service charge assessed on the last day of the month. However, with this option the customer receives two free boxes of checks at the time the account is opened. </p></div>
+                  <div class="interestDescription"></div>
+             </div>
+        
+            <div class="savingsText">
+              <h3>What type of Savings account would you like to open?</h3>
+                  <button id="savingsAccount">Savings</button>
+                  <div class="simpleDescription"><p>Our savings is a flexible account that only requires $100.00 to open. An easy way to start saving without having to worry about keeping a large balance.</p></div>
+                 <button id="moneyMarket">Money Market</button>
+                 <div class="simpleDescription"><p>Our Money Market account offers an interest based on the amount in the account. The more you save, the more you make!</p></div>
+                  <div class="interestDescription"></div>
+             </div>
+        
+        <div class="ownership">
+            <button id="addOwner">Add Another Owner - Not implemented</button>
+            <button id="addBene">Add Beneficiary - Not implemented</button>
+            <button id="ownershipContinue">Continue</button>
+        </div>
+        <p id="welcome"></p>
+    </div>
+    <script>
+    $(document).ready(function(){
+        
+    $accountType="";
+        
+    $("#checking").click(function(){
+        $(".checkingText").show();
+        $(".tab1").hide();
+    });
+    $("#savings").click(function(){
+        $(".savingsText").show();
+        $(".tab1").hide();
+    });
+        
+     $("#simpleChecking").click(function(){
+        $(".checkingText").hide();
+        $(".tab1").hide();
+        $accountType="Simple Checking";
+         $(".ownership").show();
+     });
+     $("#interestChecking").click(function(){
+        $(".checkingText").hide();
+        $(".tab1").hide();
+        $accountType="Interest Checking";
+         $(".ownership").show();
+     });
+         $("#savingsAccount").click(function(){
+        $(".savingsText").hide();
+        $(".tab1").hide();
+        $accountType="Savings";
+         $(".ownership").show();
+     });
+     $("#moneyMarket").click(function(){
+        $(".savingsText").hide();
+        $(".tab1").hide();
+        $accountType="Money Market";
+         $(".ownership").show();
+     });
+        $("#ownershipContinue").click(function(){
+            $(".ownership").hide();
+            if($accountType=="Simple Checking"){
+             $.get("createSimpleChecking.php", function(data){
+            document.getElementById("welcome").innerHTML=data;
+                 });
+             }
+            else if($accountType=="Interest Checking")
+                {
+                    $.get("createInterestChecking.php", function(data){
+                    document.getElementById("welcome").innerHTML=data;
+                        });
+                }
+             else if($accountType=="Savings")
+                {
+                    $.get("createSavings.php", function(data){
+                    document.getElementById("welcome").innerHTML=data;
+                        });
+                }
+             else if($accountType=="Money Market")
+                {
+                    $.get("createMoneyMarket.php", function(data){
+                    document.getElementById("welcome").innerHTML=data;
+                        });
+                }        
+    });
+    });
+    </script>
+</body>
+</html>
