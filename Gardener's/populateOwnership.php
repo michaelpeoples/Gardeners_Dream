@@ -50,26 +50,53 @@ $response = json_decode($str_json, true);
 $account = $response['accountNumber'];
 
 
-$sql = "Select * FROM transactions WHERE account = '$account'
-ORDER BY dateTimeStamp DESC";
+$sql = "Select * FROM account WHERE account = '$account'";
 $result = $conn->query($sql);
-echo "<h2>Account History</h2>";
+echo "<h2>Account Ownership</h2>";
 echo "<table>
 <tr>
-<th>Balance</th>
-<th>Description</th>
-<th>Amount</th>
-<th>Time</th>
+<th>Linked Customer</th>
+<th>Relationship Type</th>
+<th>Account</th>
+<th>Account Type</th>
 </tr>";
 while($row = $result->fetch_assoc()){
     echo "<tr>";
-    echo "<td>" . "$" . $row['balance'] . "</td>";
-    echo "<td>" . $row['description'] . "</td>";
-    echo "<td>" . $row['transactionAmount'] . "</td>";
-    echo "<td>" . $row['dateTimeStamp'] . "</td>";
+    echo "<td>" . $row['person1'] . "</td>";
+    echo "<td>" . $row['person1Type'] . "</td>";
+    echo "<td>" . $row['account'] . "</td>";
+    echo "<td>" . $row['type'] . "</td>";
     echo "<tr>";
+    if($row['person2'] != null)
+    {
+    echo "<tr>";
+    echo "<td>" . $row['person2'] . "</td>";
+    echo "<td>" . $row['person2Type'] . "</td>";
+    echo "<td>" . $row['account'] . "</td>";
+    echo "<td>" . $row['type'] . "</td>";
+    echo "<tr>";
+    }
+     if($row['person3'] != null)
+    {
+    echo "<tr>";
+    echo "<td>" . $row['person3'] . "</td>";
+    echo "<td>" . $row['person3Type'] . "</td>";
+    echo "<td>" . $row['account'] . "</td>";
+    echo "<td>" . $row['type'] . "</td>";
+    echo "<tr>";
+    }
+     if($row['person4'] != null)
+    {
+    echo "<tr>";
+    echo "<td>" . $row['person4'] . "</td>";
+    echo "<td>" . $row['person4Type'] . "</td>";
+    echo "<td>" . $row['account'] . "</td>";
+    echo "<td>" . $row['type'] . "</td>";
+    echo "<tr>";
+    }
 }
-
+     
+ echo "<td>" . "<div id='addOwner' " . "onclick=" . "addOwner(" . $account . ");" . ">" . "Add another Owner/Beneficiary" . "</div>" . "</td>";
 echo "</table>";
 ?>
     

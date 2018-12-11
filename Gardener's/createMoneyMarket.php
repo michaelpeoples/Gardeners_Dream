@@ -13,10 +13,11 @@ $result = $conn->query($sql);
 
 while($row = $result->fetch_assoc()){
    $userSSN = $row['ssn'];
+    $name = $row['name'];
 }
 
-$sql = "INSERT INTO account (account, balance, type, person1, SSN1, person2, SSN2, person3, SSN3, person4, SSN4)
-VALUES ('default', '0', 'Money Market', '', '$userSSN', '', '', '', '', '', '')";
+$sql = "INSERT INTO account (account, balance, type, person1, SSN1, person1Type)
+VALUES ('default', '0', 'Money Market', '$name', '$userSSN', 'Owner')";
 if($conn->query($sql)===TRUE)
 {
     

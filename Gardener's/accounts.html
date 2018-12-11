@@ -3,8 +3,15 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title> Garderner's Dream </title>
+<title> Gardener's Dream </title>
+    
     <link rel="stylesheet" href="gardenersDream.css">
+    <style>
+    .userInput{
+    display: none;
+    }
+    </style>
+    
 </head>
 
 <body>
@@ -26,10 +33,26 @@
     
     <br><br>
     <div id="welcome"><p></P></p></div>
+
+        <div class="userInput">
+        <h3>We'll need the information of the owner/beneficiary to add...</h3>
+        <form method=post action='addOwner.php'>
+        <input type="text" placeholder="Name" name="name">
+        <input type="text" placeholder="Social Security Number" name="ssn">
+        <input type="text" placeholder='' value='' name ="account" id='accountForm' readonly>
+        <input type="radio" name="ownershipType" value="Owner" checked>Owner<br>
+        <input type="radio" name="ownershipType" value="POD">Beneficiary<br>
+        <button type="Sign up">Submit</button>
+        </form>
+        <h3>Information about owners:</h3>
+        <p>An owner will have the same access to the account that you do. They have the power to make withdrawals, deposits, payments, transfers, and receive a transaction history on the account.</p>
+        <h3>Information about beneficiaries:</h3>
+        <p>A beneficiary does not have access to the account and will not be able to receive any information about the account. Upon your death, the beneficiary will be able to receive the funds from your account after they have provided a death certificate.</p>
+        </div>
     <br>
 
 
-    <script>
+    <script> 
     $(function(){
         $.get("populateAccounts.php", function(data){
             document.getElementById("welcome").innerHTML=data;
@@ -47,6 +70,27 @@
         });
         
     };
+        
+    function populateOwnership(account){
+         
+          var accountNumber = {
+                accountNumber : account
+            }
+            var jsonObj = JSON.stringify(accountNumber);
+        $.post("populateOwnership.php", jsonObj, function(data){
+            document.getElementById("welcome").innerHTML=data;
+        });
+        
+    };
+        
+    function addOwner(account){
+        $account = account;
+         $("#welcome").hide();
+        $(".userInput").show();
+        $("#accountForm").val($account);
+        
+    };
+ 
     </script>
 </body>
 </html>

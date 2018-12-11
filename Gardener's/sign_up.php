@@ -11,9 +11,10 @@ $password = $_POST['password'];
 $confirmPass = $_POST['confirmPass'];
 $email = $_POST['email'];
 $ssn = $_POST['ssn'];
+$name = $_POST['name'];
     
-$sql = "INSERT INTO users (username, password, email, ssn) 
-VALUES ('$username', '$password', '$email', '$ssn')";
+$sql = "INSERT INTO users (name, username, password, email, ssn) 
+VALUES ('$name', $username', '$password', '$email', '$ssn')";
 
 if($conn->query($sql) === TRUE){
    

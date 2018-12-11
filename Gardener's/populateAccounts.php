@@ -17,7 +17,7 @@ th {
         color: white;
         opacity: .7;
 }
-tr:hover {
+td:hover {
     background-color: #ddd;
 }
     table{
@@ -69,12 +69,14 @@ echo "<table>
 <th>Balance</th>
 <th>Account Number</th>
 <th>Type</th>
+<th>Ownership</th>
 </tr>";
 while($row = $result->fetch_assoc()){
     echo "<tr>";
     echo "<td>" . "$" . $row['balance'] . "</td>";
-    echo "<td>" . "<div id='account' " . "onclick=" . "populateHistory(" . $row['account'] . ");" . $row["account"] . ">" . "<a href='accountHistory.html'>" . $row['account'] . "</a>" . "</div>" . "</td>";
+    echo "<td>" . "<div id='account' " . "onclick=" . "populateHistory(" . $row['account'] . ");" . $row["account"] . ">" . $row['account'] .  "</div>" . "</td>";
     echo "<td>" . $row['type'] . "</td>";
+    echo "<td>" . "<div id='ownership' " . "onclick=" . "populateOwnership(" . $row['account'] . ");" . ">"  . "View Ownership" . "</div>" . "</td>";
     echo "<tr>";
 }
 

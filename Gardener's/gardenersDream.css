@@ -83,6 +83,7 @@
     margin: auto;
     box-shadow: 5px 5px 5px lightgray;
     opacity: .7;
+    overflow: hidden;
 }
 .userInput button{
     width: 100%;
