@@ -2,8 +2,26 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title> Garderner's Dream </title>
-    <link rel="stylesheet" href="gardenersDream.css">
+<title> Gardener's Dream </title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="gardenersDream.css">
+    
+    <style>
+        input[type=submit]{
+            width: 50%;
+            margin-top: 1%;
+            padding: 10px 10px;
+            background-color: blue;
+            opacity: .7;
+            color: white;
+        }
+        input[type=submit]{
+            
+        }
+        .userInput{
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,6 +39,174 @@
     </div>
        
     </div>
+<div class="userInput">
+    <h1 class="font">Payments</h1>
+    <h2 class="red font">Bill Pay Enrollment</h2>
+    <p class="font">Thank you for choosing Gardener's Dream Bill Pay. If you have any questions about how Bill Pay works, please contact your financial institution. The information you provide is safeguarded using secure Internet data encryption technologies and is only used for setting up your Gardener's Dream Bill Pay account.</p>
+
+    <h2 class="font">Verify your personal information.</h2>
+    <p class="font">Your personal information is provided by Gardener's Dream Corporation.</p>
+
+    <p class="bold italic font">(Required fields are indicated by an asterisk and must be filled out prior to submitting the enrollment request.)</p>
     
+    <form method='post' action="paymentsSignUp.php">
+        <fieldset class="form_width">
+            <legend class="font">Personal Information</legend>
+            <p class='font'>First Name:<br>
+            <input type="text" name='firstname'size='35'><br>
+            Last Name:<br>
+            <input type="text" name="lastname" size='35'><br>
+            Phone:<br>
+            <input type="text" name="phone"size='35'><br>
+            Email:<br>
+            <input type="text" name="email" size='35'><br></p>
+        </fieldset>
+        <fieldset class="form_width">
+            <legend class="font">Current Address</legend>
+            <p class='font'>Address 1:<br>
+            <input type="text" name='address' size='35'><br>
+            City:<br>
+            <input type="text" name="city" size='35'><br>
+            State:<br>
+            <input type="text" name="state" size='35'><br>
+            Zip:<br>
+            <input type="text" name="zip" size='35'><br></p>
+        </fieldset>
+        <input type="submit">
+    </form>
+
+    <br>
+    
+    <form class='form_specs'>
+        <fieldset class='form_specs'>
+            <legend class='font'>Terms & Conditions</legend>
+            <div class="scroll-box font"> 
+                <p>TERMS AND CONDITIONS OF THE BILL PAYMENT SERVICE
+
+                    SERVICE DEFINITIONS
+
+                    "Service" means the bill payment service offered by Bill Pay through Gardener's Dream.
+
+
+	
+                    "Agreement" means these terms and conditions of the bill payment service.
+
+
+
+                    "Biller" is the person or entity to which you wish a bill payment to be directed or is the person or entity from which you receive electronic bills, as the case may be.  
+
+
+
+                    "Payment Instruction" is the information provided by you to the Service
+
+                    for a bill payment to be made to the Biller (such as, but not limited to, 
+
+                    Biller name, Biller account number, and Scheduled Payment Date).
+
+
+
+                    "Payment Account" is the checking account from which bill payments will be debited.
+
+
+
+                    "Billing Account" is the checking account from which all Service fees
+
+                    will be automatically debited.
+
+
+
+                    "Business Day" is every Monday through Friday, excluding Federal Reserve
+
+                    holidays.
+
+
+
+                    "Scheduled Payment Date" is the day you want your Biller to receive your
+
+                    bill payment and is also the day your Payment Account will be debited,
+
+                    unless the Scheduled Payment Date falls on a non-Business Day in which
+
+                    case it will be considered to be the previous Business Day. 
+
+
+
+                    "Due Date" is the date reflected on your Biller statement for which the
+
+                    payment is due; it is not the late date or grace period.
+
+
+
+                    "Scheduled Payment" is a payment that has been scheduled through the
+
+                    Service but has not begun processing.
+
+
+
+                    PAYMENT SCHEDULING
+
+                    The earliest possible Scheduled Payment Date for each Biller (typically
+
+                    four (4) or fewer Business Days from the current date) will be designated
+
+                    within the application when you are scheduling the payment.  Therefore,
+
+                    the application will not permit you to select a Scheduled Payment Date
+
+                    less than the earliest possible Scheduled Payment Date designated for
+
+                    each Biller. When scheduling payments you must select a Scheduled
+
+                    Payment Date that is no later than the actual Due Date reflected on
+
+                    your Biller statement unless the Due Date falls on a non-Business Day.
+
+                    If the actual Due Date falls on a non-Business Day, you must select a
+
+                    Scheduled Payment Date that is at least one (1) Business Day before
+
+                    the actual Due Date. Scheduled Payment Dates must be prior to any late
+
+                    date or grace period.
+
+
+
+                    THE SERVICE GUARANTEE
+
+                    Due to circumstances beyond the control of the Service, particularly
+
+                    delays in handling and posting payments by Billers or financial
+
+                    institutions, some transactions may take longer to be credited to
+
+                    your account. The Service will bear responsibility for any late
+
+                    payment related charges up to $50.00 should a payment post after its
+
+                    Due Date as long as the payment was scheduled in accordance with the
+
+                    guidelines described under "Payment Scheduling" in this Agreement.</p>
+            </div>
+        </fieldset>
+    </form>
+
+    <br><br>
+    
+    </div>
+    
+    <script>
+      $(document).ready(function() {
+    $.get("CheckIfEnrolled.php",function(data){
+          
+          if(data == 1)
+          {
+              window.location.href = "billPayHome.html";
+          }
+        else{
+            $(".userInput").show();
+        }
+          });
+    });
+    </script>
 </body>
 </html>
