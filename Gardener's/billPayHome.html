@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<title> Garderner's Dream </title>
+    <link rel="stylesheet" href="gardenersDream.css">
+    
+    <style>
+        .userInput{
+            display: none;
+        }
+        
+    </style>
+</head>
+
+<body>
+   <div class="navbar">
+    <a href="accounts.html">Accounts</a>
+    <a href="transfers.html">Transfers</a>
+    <a href="openAccounts.html">Open Accounts</a>
+    <a href="payments.html">Payments</a>
+    <a href="contacts.html">Contacts</a>
+    <a href="myProfile.html">Profile</a>
+    
+    <div class="currentProfile">
+    
+    <div class="navbar-container">
+    <button>logout</button>
+    </div>
+       
+    </div>
+    </div>
+    
+     <div id="welcome"><p></P></p></div>
+
+     <div class="userInput">
+        <h3>We'll need the information of bill you'd like to add...</h3>
+        <form method=post action='addBill.php' id='billPayForm'>
+            <div id="fromAccount"></div>
+        <input type="text" placeholder="Send to Account" name="toAccount">
+        <input type="text" placeholder="Routing Number" name="routing">
+        <input type="text" placeholder="Amount" name="amount">
+        <br>
+        <label>Send On:</label>
+        <input type="date" placeholder="Date to Send" name="dateToSend">
+        <br><br>                                                     
+        <input type="submit">
+        </form>
+</div>
+    <script>
+        
+    $(document).ready(function() {
+    $.get("populate_billPays.php", function(data){
+            document.getElementById("welcome").innerHTML=data;
+        });
+    });
+        
+    function addBill()
+        {
+            $("#welcome").hide();
+            $(".userInput").show();
+        }
+                          
+    $.get("billPayOptions.php", function(data){
+    document.getElementById("fromAccount").innerHTML=data;
+        });
+        
+            function deleteBill(id)
+        {
+            var billID = {
+                billID : id
+            }
+            var jsonObj = JSON.stringify(billID);
+            $.post("deleteBill.php", jsonObj);
+             $.get("populate_billPays.php", function(data){
+            document.getElementById("welcome").innerHTML=data;
+        });
+        }
+    </script>
+</body>
+</html>

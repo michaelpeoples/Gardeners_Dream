@@ -63,6 +63,12 @@ else{
 
 $sql = "Select * FROM account WHERE SSN1 = '$userSSN'";
 $result = $conn->query($sql);
+$sql = "Select * FROM account WHERE SSN2 = '$userSSN' AND person2Type = 'Owner'";
+$result2 = $conn->query($sql);
+$sql = "Select * FROM account WHERE SSN3 = '$userSSN' AND person3Type = 'Owner'";
+$result3 = $conn->query($sql);
+$sql = "Select * FROM account WHERE SSN4 = '$userSSN' AND person4Type = 'Owner'";
+$result4 = $conn->query($sql);
 echo "<h2>My Accounts</h2>";
 echo "<table>
 <tr>
@@ -79,7 +85,31 @@ while($row = $result->fetch_assoc()){
     echo "<td>" . "<div id='ownership' " . "onclick=" . "populateOwnership(" . $row['account'] . ");" . ">"  . "View Ownership" . "</div>" . "</td>";
     echo "<tr>";
 }
-
+     while($row = $result2->fetch_assoc()){
+    echo "<tr>";
+    echo "<td>" . "$" . $row['balance'] . "</td>";
+    echo "<td>" . "<div id='account' " . "onclick=" . "populateHistory(" . $row['account'] . ");" . $row["account"] . ">" . $row['account'] .  "</div>" . "</td>";
+    echo "<td>" . $row['type'] . "</td>";
+    echo "<td>" . "<div id='ownership' " . "onclick=" . "populateOwnership(" . $row['account'] . ");" . ">"  . "View Ownership" . "</div>" . "</td>";
+    echo "<tr>";
+}
+    while($row = $result3->fetch_assoc()){
+    echo "<tr>";
+    echo "<td>" . "$" . $row['balance'] . "</td>";
+    echo "<td>" . "<div id='account' " . "onclick=" . "populateHistory(" . $row['account'] . ");" . $row["account"] . ">" . $row['account'] .  "</div>" . "</td>";
+    echo "<td>" . $row['type'] . "</td>";
+    echo "<td>" . "<div id='ownership' " . "onclick=" . "populateOwnership(" . $row['account'] . ");" . ">"  . "View Ownership" . "</div>" . "</td>";
+    echo "<tr>";
+}
+    while($row = $result4->fetch_assoc()){
+    echo "<tr>";
+    echo "<td>" . "$" . $row['balance'] . "</td>";
+    echo "<td>" . "<div id='account' " . "onclick=" . "populateHistory(" . $row['account'] . ");" . $row["account"] . ">" . $row['account'] .  "</div>" . "</td>";
+    echo "<td>" . $row['type'] . "</td>";
+    echo "<td>" . "<div id='ownership' " . "onclick=" . "populateOwnership(" . $row['account'] . ");" . ">"  . "View Ownership" . "</div>" . "</td>";
+    echo "<tr>";
+}
+//OR SSN2 = '$userSSN' && person2Type = 'Owner' OR SSN3 = '$userSSN' && person3Type = 'Owner' OR SSN4 = '$userSSN' && person4Type == 'Owner'
 echo "</table>";
 ?>
    

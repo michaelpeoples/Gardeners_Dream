@@ -70,6 +70,42 @@ if($conn->query($sql)===TRUE)
 {
     echo "Error: " . $conn->error;
 }
+//Create Accounts Table
+$sql = "CREATE TABLE billpayers (
+id INT(30) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+SSN VARChar(30) NULL,
+firstName VARCHAR(30)  NULL,
+lastName VARCHAR(30) NULL,
+phone VARCHAR(30) NULL,
+email VARCHAR(30) NULL,
+address VARCHAR(30) NULL,
+city VARCHAR(30) NULL,
+state VARCHAR(30) NULL,
+zip VARCHAR(30)
+)";
+if($conn->query($sql)===TRUE)
+{
+    
+}else
+{
+    echo "Error: " . $conn->error;
+}
+$sql = "CREATE TABLE billPays (
+id INT(30) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+sendToAccount VARCHAR(30) NULL,
+fromAccount VARCHAR(30) NOT NULL,
+amount FLOAT(32) NOT NULL,
+SSN VARCHAR(30) NOT NULL,
+dateToSend DATE,
+routing VARCHAR(30) NOT NULL
+)";
+if($conn->query($sql)===TRUE)
+{
+    
+}else
+{
+    echo "Error: " . $conn->error;
+}
 $sql = "CREATE Table transactions (
 transactionsNumber INT(30) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 account INT(30) NOT NULL,
@@ -88,6 +124,24 @@ if($conn->query($sql)===TRUE)
 
 $sql = "INSERT INTO account (account, balance, type, person1, SSN1, person1Type, person2, SSN2, person2Type, person3, SSN3, person3Type, person4, SSN4, person4Type)
 VALUES ('10005000', '500.50', 'Checking', 'John Doe', '000-00-0000', 'Owner', 'Jack Doe', '111-11-1111', 'POD', '', '', '', '', '', '')";
+if($conn->query($sql)===TRUE)
+{
+    
+}else
+{
+    echo "Error: " . $conn->error;
+}
+$sql = "INSERT INTO account (account, balance, type, person1, SSN1, person1Type, person2, SSN2, person2Type, person3, SSN3, person3Type, person4, SSN4, person4Type)
+VALUES ('default', '10000.00', 'Checking', 'Bilbo Baggins', '222-22-2222', 'Owner', 'Frodo Baggins', '111-11-1111', 'POD', '', '', '', '', '', '')";
+if($conn->query($sql)===TRUE)
+{
+    
+}else
+{
+    echo "Error: " . $conn->error;
+}
+$sql = "INSERT INTO account (account, balance, type, person1, SSN1, person1Type, person2, SSN2, person2Type, person3, SSN3, person3Type, person4, SSN4, person4Type)
+VALUES ('default', '10000.00', 'Checking', 'Tyreek Hill', '333-33-3333', 'Owner', 'Travis Kelce', '444-44-4444', 'POD', '', '', '', '', '', '')";
 if($conn->query($sql)===TRUE)
 {
     

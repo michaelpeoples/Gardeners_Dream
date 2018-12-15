@@ -20,7 +20,7 @@ if($result->num_rows == 1){
  }
 }
 
-if($currentBalance - $amount >= 0)
+if($currentBalance - $amount >= 0 && $fromAccount != $toAccount)
 {
 newTransaction($fromAccount, -$amount, $currentBalance - $amount, "Transfer from " . $fromAccount . " to " . $toAccount, $conn);
 $sql = "UPDATE account
@@ -53,7 +53,7 @@ $result = $conn->query($sql);
 header("Location:accounts.html");
 }
 else{
-    echo "Error processing Transaction: Insufficient Funds";
+    echo "Error processing Transaction";
 }
     
 ?>
